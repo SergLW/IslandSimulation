@@ -10,19 +10,7 @@ import java.util.Map;
 public class Wolf extends Predator {
 
     public Wolf() {
-        super(50, 30, 3, 8);
-
-        setFoodProbability(Map.of(
-                Horse.class, 10,
-                Deer.class,	15,
-                Rabbit.class, 60,
-                Mouse.class, 80,
-                Goat.class,	60,
-                Sheep.class, 70,
-                Boar.class,	15,
-                Buffalo.class, 10,
-                Duck.class, 40
-        ));
+        super();
     }
 
     @Override

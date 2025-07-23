@@ -12,4 +12,6 @@ public class RandomUtil {
 
         return island.getLocation(x, y);
     }
+
+
 }

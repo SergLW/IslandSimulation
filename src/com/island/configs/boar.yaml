@@ -1,0 +1,9 @@
+weight: 400
+maxCount: 50
+speed: 2
+foodNeeded: 50
+maxAge: 72
+foodProbability:
+  Mouse: 50
+  Caterpillar: 90
+  Plant: 100
