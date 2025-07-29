@@ -1,0 +1,9 @@
+weight: 70
+maxCount: 140
+speed: 3
+foodNeeded: 15
+maxAge: 70
+maxOffspring: 3
+minOffspring: 1
+foodProbability:
+  Plant: 100

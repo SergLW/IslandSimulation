@@ -8,8 +8,4 @@ public class Buffalo extends Herbivore {
         super();
     }
 
-    @Override
-    public boolean isAlive() {
-        return false;
-    }
 }

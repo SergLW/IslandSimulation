@@ -1,0 +1,10 @@
+weight: 1
+maxCount: 200
+speed: 4
+foodNeeded: 0.15
+maxAge: 50
+maxOffspring: 10
+minOffspring: 4
+foodProbability:
+  Caterpillar: 90
+  Plant: 100

@@ -9,8 +9,4 @@ public class Duck extends Herbivore {
         super();
     }
 
-    @Override
-    public boolean isAlive() {
-        return false;
-    }
 }

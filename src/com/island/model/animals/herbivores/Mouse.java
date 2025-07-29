@@ -8,8 +8,4 @@ public class Mouse extends Herbivore {
         super();
     }
 
-    @Override
-    public boolean isAlive() {
-        return false;
-    }
 }

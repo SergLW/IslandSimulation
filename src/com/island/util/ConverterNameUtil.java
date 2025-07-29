@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ConverterNameUtil {
-
+    // String to Class from YAML
     public static final String[] PACKAGE_NAMES = {
             "com.island.model.animals.herbivores.",
             "com.island.model.animals.predators.",
