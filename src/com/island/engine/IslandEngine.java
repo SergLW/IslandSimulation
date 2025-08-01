@@ -3,12 +3,11 @@ package com.island.engine;
 import com.island.map.Island;
 import com.island.map.Location;
 import com.island.model.animals.Animal;
+import com.island.model.plants.Plant;
 import com.island.statistics.StatisticsPrinter;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
+import java.util.concurrent.*;
 
 public class IslandEngine {
     private final Island island;
@@ -19,6 +18,7 @@ public class IslandEngine {
     }
 
     public void startSimulation() {
+
         executorService.scheduleAtFixedRate(this::runCycle, 0, 1, TimeUnit.SECONDS);
     }
 
@@ -35,4 +35,15 @@ public class IslandEngine {
         }
         StatisticsPrinter.print(island);
     }
+
+    public static void populationInit(Island island, List<Class<? extends Animal>> animals, List<Class<? extends Plant>> plants) {
+
+        for (Location location : island.getAllLocations()) {
+            for (Class<? extends Animal> animalClass : animals) {
+                int count = ThreadLocalRandom.current().nextInt() + 1;
+            }
+        }
+
+    }
+
 }

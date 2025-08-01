@@ -5,7 +5,7 @@ import com.island.model.animals.Herbivore;
 public class Deer extends Herbivore {
 
     public Deer() {
-        super(300, 2, 4, 50);
+        super();
     }
 
     @Override
