@@ -8,8 +8,4 @@ public class Deer extends Herbivore {
         super();
     }
 
-    @Override
-    public boolean isAlive() {
-        return false;
-    }
 }

@@ -7,8 +7,4 @@ public class Eagle extends Predator {
         super();
     }
 
-    @Override
-    public boolean isAlive() {
-        return false;
-    }
 }

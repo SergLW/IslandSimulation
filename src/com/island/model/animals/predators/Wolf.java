@@ -1,21 +1,11 @@
 package com.island.model.animals.predators;
 
-import com.island.model.GameObject;
 import com.island.model.animals.Predator;
-import com.island.model.animals.herbivores.*;
-
-import java.util.List;
-import java.util.Map;
 
 public class Wolf extends Predator {
 
     public Wolf() {
         super();
-    }
-
-    @Override
-    public boolean isAlive() {
-        return false;
     }
 
 }

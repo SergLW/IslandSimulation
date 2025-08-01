@@ -3,16 +3,19 @@ package com.island.util;
 import java.util.Map;
 
 public class ObjectsParametersConfig {
+    // Class for YAML file Configs
     private double weight;
     private int maxCount;
     private int speed;
     private double foodNeeded;
 
-
     private int maxAge;
+    private int maxOffspring;
+    private int minOffspring;
 
     private Map<String, Integer> foodProbability;
 
+    // Getters & Setters
     public double getWeight() {
         return weight;
     }
@@ -51,6 +54,22 @@ public class ObjectsParametersConfig {
 
     public void setMaxAge(int maxAge) {
         this.maxAge = maxAge;
+    }
+
+    public int getMaxOffspring() {
+        return maxOffspring;
+    }
+
+    public void setMaxOffspring(int maxOffspring) {
+        this.maxOffspring = maxOffspring;
+    }
+
+    public int getMinOffspring() {
+        return minOffspring;
+    }
+
+    public void setMinOffspring(int minOffspring) {
+        this.minOffspring = minOffspring;
     }
 
     public Map<String, Integer> getFoodProbability() {

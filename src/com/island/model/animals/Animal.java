@@ -1,35 +1,49 @@
 package com.island.model.animals;
 
+import com.island.action.EatAction;
+import com.island.action.LifeCycleAction;
+import com.island.action.MoveAction;
+import com.island.action.ReproduceAction;
 import com.island.map.Island;
 import com.island.map.Location;
 import com.island.model.GameObject;
 import com.island.util.ConverterNameUtil;
 import com.island.util.ObjectsParameters;
 import com.island.util.ObjectsParametersConfig;
-import com.island.util.RandomUtil;
 
-import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Animal implements GameObject {
     // --- From YAML
-    protected double weight;
-    protected int maxCount;
-    protected int speed;
-    protected double foodNeeded;
-    protected int maxAge;
-    protected Map<Class<? extends GameObject>, Integer> foodProbability;
+    private final double weight;
+    private final int maxCount;
+    private final int speed;
+    private final double foodNeeded;
+    private final int maxAge;
+    private final int maxOffspring;
+    private final int minOffspring;
+    private final Map<Class<? extends GameObject>, Integer> foodProbability;
+
     // --- RANDOM generated
-    protected int age;
-    protected double currentHunger;
-    protected int maxTimeNotEat;
-
+    private int age;
+    private double currentHunger;
+    //--- Timers and boolean
+    private int maxTimeNotEat;
+    private int timeNotEat = 0;
+    private int timesNotFoodNeed = 0;
+    private boolean hasFinishedTurn = false;
+    private boolean markedForRelocation = false;
     //-----------------
-    protected Location location;
+    private Location location;
 
+    // --- Animal action Classes
+    private static final EatAction eatAction = new EatAction();
+    private static final MoveAction moveAction = MoveAction.getInstance();
+    private static final ReproduceAction reproduceAction = new ReproduceAction(moveAction);
+    private static final LifeCycleAction lifeCycleAction = new LifeCycleAction();
 
-
+    // --- Constructor
     public Animal() {
         ObjectsParametersConfig config = ObjectsParameters.getConfig(this.getClass());
 
@@ -38,37 +52,35 @@ public abstract class Animal implements GameObject {
         this.speed = config.getSpeed();
         this.foodNeeded = config.getFoodNeeded();
         this.maxAge = config.getMaxAge();
+        this.maxOffspring = config.getMaxOffspring();
+        this.minOffspring = config.getMinOffspring();
         //---- foodProbability
         this.foodProbability = ConverterNameUtil.stringToClassName(config.getFoodProbability());
-
-
-        //--- Random
-        this.age = ThreadLocalRandom.current().nextInt(0, maxAge/2);
-        this.currentHunger = ThreadLocalRandom.current().nextDouble(0, foodNeeded);
-        this.maxTimeNotEat = ThreadLocalRandom.current().nextInt(2, 6);
     }
 
+    // ---- Action methods
 
-    protected boolean wasEaten(GameObject gameObject) {
-        Integer chance = foodProbability.getOrDefault(gameObject.getClass(), 0);
-        if (chance > 0) {
-            return ThreadLocalRandom.current().nextInt(100) < chance;
-        }
-        return false;
-    }
+    public void eat() {
+        eatAction.eatObject(this);
+    };
+
+    public void reproduce() {
+        reproduceAction.reproduction(this);
+    };
 
     public void move(Island island) {
-        Location newLocation = RandomUtil.getRandomLocation(island, location, speed);
+        moveAction.movingCondition(this, island);
+    }
 
+    public void aging() {
+       lifeCycleAction.agingAction(this);
+    }
 
-    };
-    public void eat() {
+    public void die() {
+        lifeCycleAction.dieAction(this);
+    }
 
-    };
-    public void reproduce() {
-
-    };
-
+    //--- Getters & Setters
 
     public double getWeight() {
         return weight;
@@ -110,6 +122,11 @@ public abstract class Animal implements GameObject {
         this.age = age;
     }
 
+    public int getOffspring() {
+        return ThreadLocalRandom.current().nextInt(minOffspring, maxOffspring);
+
+    }
+
     public double getCurrentHunger() {
         return currentHunger;
     }
@@ -118,18 +135,62 @@ public abstract class Animal implements GameObject {
         this.currentHunger = currentHunger;
     }
 
+    public int getTimeNotEat() {
+        return timeNotEat;
+    }
+
+    public void setTimeNotEat(int timeNotEat) {
+        this.timeNotEat = timeNotEat;
+    }
+
+    public int getMaxTimeNotEat() {
+        return maxTimeNotEat;
+    }
+
+    public void setMaxTimeNotEat(int maxTimeNotEat) {
+        this.maxTimeNotEat = maxTimeNotEat;
+    }
+
+    public int getTimesNotFoodNeed() {
+        return timesNotFoodNeed;
+    }
+
+
+    public void setTimesNotFoodNeed(int timesNotFoodNeed) {
+        this.timesNotFoodNeed = timesNotFoodNeed;
+    }
+
+    public void setHasFinishedTurn(boolean hasFinishedTurn) {
+        this.hasFinishedTurn = hasFinishedTurn;
+    }
+
+    // Boolean and Timer Methods
+    public boolean isReadyToMove() {
+        return !hasFinishedTurn;
+    }
+
+    public boolean isMarkedForRelocation() {
+        return markedForRelocation;
+    }
+    public void markForRelocation(boolean mark) {
+        this.markedForRelocation = mark;
+    }
+    public boolean isHasFinishedTurn() {
+        return hasFinishedTurn;
+    }
+
+    public void resetTurn() {
+        hasFinishedTurn = false;
+    }
+
+    // Equels & hashCode
     @Override
-    public String toString() {
-        return this.getClass() + "{" +
-                "\nweight=" + weight +
-                ", \nmaxCount=" + maxCount +
-                ", \nspeed=" + speed +
-                ", \nfoodNeeded=" + foodNeeded +
-                ", \nmaxAge=" + maxAge +
-                ", \nfoodProbability=" + foodProbability +
-                ", \nage=" + age +
-                ", \ncurrentHunger=" + currentHunger +
-                ", \nmaxTimeNotEat=" + maxTimeNotEat +
-                '}' + "\n";
+    public boolean equals(Object o) {
+        return this == o;
+    }
+
+    @Override
+    public int hashCode() {
+        return System.identityHashCode(this);
     }
 }
