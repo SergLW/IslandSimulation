@@ -1,0 +1,12 @@
+weight: 6
+maxCount: 30
+speed: 3
+foodNeeded: 1
+maxAge: 100
+maxOffspring: 3
+minOffspring: 1
+foodProbability:
+  Fox: 10
+  Rabbit: 90
+  Mouse: 90
+  Duck: 80

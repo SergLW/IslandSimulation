@@ -1,1 +1,68 @@
 Simulation of an island with animals
+
+Simulation conditions:
+
+1. The animal searches for prey.
+ 1.1. If it does not find any:
+  - satiety decreases with each tick;
+  - as soon as satiety falls below 0, the hunger counter increases with each tick;
+  - if the counter falls below 2 or the animal's satiety has not reached its maximum for several ticks, the animal moves to another location;
+  - if the hunger counter exceeds the limit, the animal dies of starvation;
+ 1.2. If found:
+  - If more than 75% full, it looks for a mate to reproduce.
+  - If below 75% to above 0, it looks for prey on the next tick.
+Exception: plants and caterpillars reproduce (random) on their own within a single location.
+2. There may be a limited number of animals in a location.
+3. Animals die as a result of aging.
+
+----------------------
+Example statistics:
+per tick:
+```
+--- Tick 434---
+Animals: Boar: 8046, Rabbit: 3756, Caterpillar: 3117, Bear: 478, Deer: 5565, Fox: 9280, Mouse: 69604, Boa: 1996, Horse: 125, Sheep: 30642, Duck: 24993, Goat: 4619, Wolf: 12088, Eagle: 2394
+Plants: 1782
+Born: Plant: 72, Mouse: 250, Duck: 39, Caterpillar: 779, Fox: 6
+Moves: Boar: 155 times, Mouse: 217 times, Boa: 54 times, Rabbit: 19 times, Duck: 330 times, Sheep: 390 times, Goat: 82 times, Bear: 12 times, Wolf: 223 times, Eagle: 48 times, Fox: 161 times, Deer: 100 times
+Death:
+  From hunger: Horse: 2
+  From old age: Caterpillar: 456, Wolf: 1, Fox: 2
+  Were eaten: Boar: 3, Mouse: 1561, Rabbit: 44, Duck: 109, Sheep: 106, Goat: 30, Caterpillar: 821, Deer: 4, Fox: 17
+Eaten:
+ 1525 Boar eaten: 1308 Mouse, 217 Caterpillar
+ 190 Mouse eaten: 190 Caterpillar
+ 26 Boa eaten: 3 Mouse, 4 Rabbit, 8 Duck, 11 Fox
+ 13 Sheep eaten: 13 Plant
+ 346 Duck eaten: 1 Plant, 345 Caterpillar
+ 14 Bear eaten: 1 Boar, 1 Duck, 7 Sheep, 4 Goat, 1 Deer
+ 179 Wolf eaten: 2 Boar, 12 Mouse, 20 Rabbit, 17 Duck, 99 Sheep, 26 Goat, 3 Deer
+ 68 Eagle eaten: 40 Mouse, 10 Rabbit, 12 Duck, 6 Fox
+ 348 Fox eaten: 198 Mouse, 10 Rabbit, 71 Duck, 69 Caterpillar
+
+```
+total:
+```
+Simulation completed. Only predator left.
+--- Total Statistics ----
+Total ticks: 946
+Total born: Boar: 6, Mouse: 189215, Boa: 89, Duck: 7901, Sheep: 70, Caterpillar: 529022, Bear: 2, Wolf: 163, Fox: 366, Deer: 2
+Total moves: Boar: 82146 times, Mouse: 277183 times, Boa: 38697 times, Rabbit: 45128 times, Duck: 114300 times, Sheep: 198811 times, Goat: 16443 times, Bear: 14639 times, Wolf: 208572 times, Eagle: 67287 times, Deer: 59891 times, Fox: 92685 times
+Death:
+  From hunger: Boa: 312, Horse: 3579, Bear: 2, Wolf: 18, Eagle: 1238, Deer: 37, Buffalo: 2405
+  From old age: Boar: 539, Mouse: 1941, Boa: 102, Rabbit: 1, Duck: 48, Sheep: 22, Caterpillar: 446387, Bear: 467, Wolf: 10243, Eagle: 1272, Deer: 49, Fox: 2548
+  Were eaten: Boar: 7779, Mouse: 287632, Boa: 1675, Horse: 4, Rabbit: 54716, Duck: 42333, Sheep: 48778, Caterpillar: 488428, Goat: 11027, Fox: 8122, Buffalo: 6, Deer: 5633
+Eaten:
+ 277308 Boar eaten: 5331 Plant, 195151 Mouse, 76826 Caterpillar
+ 31107 Rabbit eaten: 31107 Plant
+ 6318 Bear eaten: 818 Boar, 288 Mouse, 1675 Boa, 276 Rabbit, 75 Duck, 1470 Sheep, 731 Goat, 985 Deer
+ 41272 Deer eaten: 41272 Plant
+ 147974 Fox eaten: 73482 Mouse, 13645 Rabbit, 25857 Duck, 34990 Caterpillar
+ 254703 Mouse eaten: 1320 Plant, 253383 Caterpillar
+ 10921 Boa eaten: 3134 Mouse, 1202 Rabbit, 2220 Duck, 4365 Fox
+ 123562 Duck eaten: 333 Plant, 123229 Caterpillar
+ 219970 Sheep eaten: 219970 Plant
+ 499 Goat eaten: 499 Plant
+ 126716 Wolf eaten: 6961 Boar, 11573 Mouse, 4 Horse, 37215 Rabbit, 8705 Duck, 47308 Sheep, 10296 Goat, 6 Buffalo, 4648 Deer
+ 15615 Eagle eaten: 4004 Mouse, 2378 Rabbit, 5476 Duck, 3757 Fox
+ 6022 Buffalo eaten: 6022 Plant
+```

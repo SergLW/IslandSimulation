@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import java.io.InputStream;
 
 public class ObjectLoaderUtil {
-
+    // Load configs from YAML file
     public static final String CONFIG_FOLDER = "com/island/configs/";
 
     public static ObjectsParametersConfig loadConfig(String configName) {

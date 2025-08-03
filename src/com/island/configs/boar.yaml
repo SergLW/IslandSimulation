@@ -3,6 +3,8 @@ maxCount: 50
 speed: 2
 foodNeeded: 50
 maxAge: 72
+maxOffspring: 6
+minOffspring: 2
 foodProbability:
   Mouse: 50
   Caterpillar: 90

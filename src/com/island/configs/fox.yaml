@@ -1,0 +1,12 @@
+weight: 8
+maxCount: 30
+speed: 2
+foodNeeded: 2
+maxAge: 48
+maxOffspring: 5
+minOffspring: 2
+foodProbability:
+  Rabbit: 70
+  Mouse: 90
+  Duck: 60
+  Caterpillar: 40

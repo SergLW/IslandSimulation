@@ -1,0 +1,18 @@
+weight: 500
+maxCount: 5
+speed: 2
+foodNeeded: 80
+maxAge: 100
+maxOffspring: 3
+minOffspring: 1
+foodProbability:
+  Boa: 80
+  Horse: 40
+  Deer: 80
+  Rabbit: 80
+  Mouse: 90
+  Goat: 70
+  Sheep: 70
+  Boar: 50
+  Buffalo: 20
+  Duck: 10

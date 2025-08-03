@@ -7,8 +7,4 @@ public class Bear extends Predator {
         super();
     }
 
-    @Override
-    public boolean isAlive() {
-        return false;
-    }
 }
